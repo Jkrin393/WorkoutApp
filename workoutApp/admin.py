@@ -19,13 +19,20 @@ class ExerciseInWorkoutAdmin(admin.ModelAdmin):
 
 @admin.register(WeeklyPlan)
 class WeeklyPlanAdmin(admin.ModelAdmin):
-    list_display = ('week', 'list_split_types', 'list_exercises')
+    list_display = ('week', 'split_types', 'exercises')
 
-    def list_split_types(self, obj):
+    def week_number(self, obj):
+        return obj.week.week_number
+
+    def split_types(self, obj):
         return ", ".join([split.split_name for split in obj.split_types.all()])
+    
 
-    def list_exercises(self, obj):
-        return ", ".join([exercise.name for exercise in obj.exercises.all()])
+    def exercises(self, obj):
+        return ", ".join([exercise.exerciseinworkout.exercise.name for exercise in obj.exercises.all()])
+    
 
-    list_split_types.short_description = 'Split Types'
-    list_exercises.short_description = 'Exercises'
+
+    week_number.short_description = 'Week Number'
+    split_types.short_description = 'Split Types'
+    exercises.short_description = "Exercises"

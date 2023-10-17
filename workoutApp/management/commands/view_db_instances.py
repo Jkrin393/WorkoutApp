@@ -8,28 +8,7 @@ class Command(BaseCommand):
         parser.add_argument('database_table', help='Name of table')
         parser.add_argument('--attribute', help='table row(attribute)')
 
-    #def view_db_instances(self, database_table=None, attribute = None):
-    #    weekly_plans = WeeklyPlan.objects.all()
-    #    for weekly_plan in weekly_plans:
-    #        print(f"Week: {weekly_plan.week.week_number}")
-    #        for split_type in weekly_plan.split_types.all():
-    #            print(f"Split - {split_type.get_split_name_display()}:")
-#
-    #            # Iterate through the exercises linked to this weekly plan
-    #            for exercise_in_workout in weekly_plan.exercises.all():
-    #                exercise = exercise_in_workout.exercise
-    #                print(f"Exercise: {exercise.name}")
-    #                print(f"Min Reps: {exercise_in_workout.min_reps}")
-    #                print(f"Max Reps: {exercise_in_workout.max_reps}")
-    #                print(f"Weight: {exercise_in_workout.weight}")
-    #                print(f"Warmup Sets: {exercise_in_workout.warmup_sets}")
-    #                print(f"Working Sets: {exercise_in_workout.working_sets}")
-    #                print(f"Dropset: {exercise_in_workout.dropset}")
-    #            print()#line break for splits
-#
-    #        print()  #line break for weeks
-    #
-    def view_db_instances(self, database_table=None, attribute=None, output_file_path='output.txt'):
+    def view_db_instances(self, database_table, attribute=None, output_file_path='output.txt'):
         weekly_plans = WeeklyPlan.objects.all()
         with open(output_file_path, 'w') as output_file:
             for weekly_plan in weekly_plans:

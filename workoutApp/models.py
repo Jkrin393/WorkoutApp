@@ -3,19 +3,10 @@ from django.core.validators import MaxValueValidator
 
 # Create your models here.
 class Week(models.Model):
-    week_number = models.PositiveSmallIntegerField(
-        validators=[MaxValueValidator(limit_value=12)],
-        default = 0
-    )
+    week_number = models.PositiveSmallIntegerField( default = 0)
 
 class Split(models.Model):
-    WORKOUT_TYPES = (
-        ('FULL', 'Full Body'),
-        ('LOWER', 'Lower Body'),
-        ('UPPER', 'Upper Body'),
-        ('Error', 'import error')
-    )   
-    split_name = models.CharField(max_length= 20, choices=WORKOUT_TYPES, default='Error')
+    split_name = models.CharField(max_length= 20, default='Error')
 
 class Exercise(models.Model):
     name = models.CharField(max_length=100)
